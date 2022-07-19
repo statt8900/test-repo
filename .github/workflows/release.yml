@@ -19,13 +19,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Check Prelease
-        id: check-Prelease
+        id: check-prerelease
         run: |
           if [[ ${{ github.event.ref }} =~ ^refs/tags/v[0-9]+\.[0-9]+\.[0-9]+[a-b][0-9]+$ ]]; then
               echo ::set-output name=match::true
           fi
       - name: Create Alpha Release
-        if: steps.check-tag.outputs.match == 'true'
+        if: steps.check-prerelease.outputs.match == 'true'
         id: create_release
         uses: actions/create-release@v1
         env:
@@ -38,4 +38,4 @@ jobs:
             - First Change
             - Second Change
           draft: false
-          prerelease: ${{steps.check-tag.outputs.match}}
+          prerelease: ${{steps.check-prerelease.outputs.match}}
