@@ -7,6 +7,7 @@ readme = "README.md"
 version = "0.1.0"
 
 [tool.poetry.dependencies]
+numpy = "^1.23.1"
 python = "^3.8"
 rich = "^12.5.1"
 typer = "^0.6.1"
@@ -16,6 +17,7 @@ app = "app.cli.main:main"
 
 [tool.poetry.group.dev.dependencies]
 black = "^22.6.0"
+coverage = {version = "^6.4.2", extras = ["toml"]}
 flake8 = "^4.0.1"
 isort = "^5.10.1"
 mypy = "^0.971"
@@ -25,3 +27,42 @@ pytest = "^7.1.2"
 [build-system]
 build-backend = "poetry.core.masonry.api"
 requires = ["poetry-core>=1.1.0b3"]
+
+[tool.black]
+line-length = 110
+skip-string-normalization = true
+target-version = ['py36', 'py37', 'py38', 'py39', 'py310']
+
+[tool.isort]
+force_grid_wrap = 0
+include_trailing_comma = true
+line_length = 110
+multi_line_output = 3
+profile = "black"
+use_parentheses = true
+
+[tool.mypy]
+exclude = "^docs_src/"
+follow_imports = "silent"
+ignore_missing_imports = false
+implicit_reexport = true
+mypy_path = "src/,tests/"
+scripts_are_modules = true
+warn_return_any = false
+
+[[tool.mypy.overrides]]
+ignore_missing_imports = true
+module = [
+  "numpy",
+]
+
+[tool.coverage]
+exclude_lines = [
+  "pragma: no cover",
+  "if TYPE_CHECKING",
+  "if __name__ == .__main__.:",
+  "...",
+]
+omit = ["*__main__*"]
+[tool.coverage.run]
+source = ["src/app"]

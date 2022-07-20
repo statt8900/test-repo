@@ -19,4 +19,4 @@ def version():
 
 
 def main():
-    app()
+    app()  # pragma: no cover
