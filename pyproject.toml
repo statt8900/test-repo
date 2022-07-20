@@ -11,10 +11,10 @@ target-version = ['py36', 'py37', 'py38', 'py39', 'py310']
 
 [tool.commitizen]
 name = "cz_conventional_commits"
-version = "0.0.0"
+version = "3.0.4"
 version_files = [
   "pyproject.toml:version",
-  "__version__.py",
+  "src/app/__init__.py",
 ]
 
 [tool.coverage]
@@ -58,7 +58,7 @@ description = ""
 name = "test-repo"
 packages = [{include = "src/app"}]
 readme = "README.md"
-version = "0.0.0"
+version = "0.0.4"
 
 [tool.poetry.dependencies]
 numpy = "^1.23.1"
