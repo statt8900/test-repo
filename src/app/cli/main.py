@@ -1,6 +1,7 @@
 import typer
-from app import __version__
 from rich.console import Console
+
+from app import __version__
 
 console = Console()
 app = typer.Typer(name="app", no_args_is_help=True)
