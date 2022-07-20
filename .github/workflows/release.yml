@@ -38,6 +38,8 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: python -m poetry install
       - name: Set version
+        run: poetry plugin add poetry-dynamic-versioning-plugin
+      - name: Set version
         run: poetry dynamic-versioning
       - name: Create Release
         id: create_release
