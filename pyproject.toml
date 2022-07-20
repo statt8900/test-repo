@@ -1,55 +1,25 @@
-[tool.poetry]
-authors = ["Michael Statt <michael.statt@modelyst.io>"]
-description = ""
-name = "test-repo"
-packages = [{include = "src/app"}]
-readme = "README.md"
-version = "3.0.2"
-
-[tool.poetry.dependencies]
-numpy = "^1.23.1"
-python = "^3.8"
-rich = "^12.5.1"
-typer = "^0.6.1"
-
-[tool.poetry.scripts]
-app = "app.cli.main:main"
-
-[tool.poetry.group.dev.dependencies]
-black = "^22.6.0"
-coverage = {version = "^6.4.2", extras = ["toml"]}
-flake8 = "^4.0.1"
-isort = "^5.10.1"
-mypy = "^0.971"
-pre-commit = "^2.20.0"
-pytest = "^7.1.2"
-
 [build-system]
 build-backend = "poetry.masonry.api"
 requires = ["poetry-core>=1.1.0b3", "poetry-dynamic-versioning-plugin"]
 
-[tool.poetry-dynamic-versioning]
-enable = true
-format-jinja = """
-    {%- if distance == 0 -%}
-        {{ serialize_pep440(base, stage, revision) }}
-    {%- elif revision is not none -%}
-        {{ serialize_pep440(base, stage, revision + 1, dev=distance, metadata=[commit]) }}
-    {%- else -%}
-        {{ serialize_pep440(bump_version(base), stage, revision, dev=distance, metadata=[commit]) }}
-    {%- endif -%}
-"""
-vcs = "git"
-
-[tool.poetry-dynamic-versioning.substitution]
-folders = [
-  {path = "src"},
-]
+[tool]
 
 [tool.black]
 line-length = 110
 skip-string-normalization = true
 target-version = ['py36', 'py37', 'py38', 'py39', 'py310']
+
+[tool.coverage]
+exclude_lines = [
+  "pragma: no cover",
+  "if TYPE_CHECKING",
+  "if __name__ == .__main__.:",
+  "...",
+]
+omit = ["*__main__*"]
+
+[tool.coverage.run]
+source = ["src/app"]
 
 [tool.isort]
 force_grid_wrap = 0
@@ -74,13 +44,46 @@ module = [
   "numpy",
 ]
 
-[tool.coverage]
-exclude_lines = [
-  "pragma: no cover",
-  "if TYPE_CHECKING",
-  "if __name__ == .__main__.:",
-  "...",
+[tool.poetry]
+authors = ["Michael Statt <michael.statt@modelyst.io>"]
+description = ""
+name = "test-repo"
+packages = [{include = "src/app"}]
+readme = "README.md"
+version = "3.0.2"
+
+[tool.poetry.dependencies]
+numpy = "^1.23.1"
+python = "^3.8"
+rich = "^12.5.1"
+typer = "^0.6.1"
+
+[tool.poetry.group.dev.dependencies]
+black = "^22.6.0"
+coverage = {version = "^6.4.2", extras = ["toml"]}
+flake8 = "^4.0.1"
+isort = "^5.10.1"
+mypy = "^0.971"
+pre-commit = "^2.20.0"
+pytest = "^7.1.2"
+
+[tool.poetry.scripts]
+app = "app.cli.main:main"
+
+[tool.poetry-dynamic-versioning]
+enable = true
+format-jinja = """
+    {%- if distance == 0 -%}
+        {{ serialize_pep440(base, stage, revision) }}
+    {%- elif revision is not none -%}
+        {{ serialize_pep440(base, stage, revision + 1, dev=distance, metadata=[commit]) }}
+    {%- else -%}
+        {{ serialize_pep440(bump_version(base), stage, revision, dev=distance, metadata=[commit]) }}
+    {%- endif -%}
+"""
+vcs = "git"
+
+[tool.poetry-dynamic-versioning.substitution]
+folders = [
+  {path = "src"},
 ]
-omit = ["*__main__*"]
-[tool.coverage.run]
-source = ["src/app"]
