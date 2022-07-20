@@ -27,7 +27,7 @@ repos:
   #       stages: [commit-msg]
   #       args: []
   - repo: https://github.com/Lucas-C/pre-commit-hooks
-    rev: v1.1.13
+    rev: v1.3.0
     hooks:
       - id: forbid-tabs
       - id: insert-license
@@ -76,7 +76,7 @@ repos:
       - id: black
         args: [--config=./pyproject.toml]
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.1.0
+    rev: v4.3.0
     hooks:
       - id: check-merge-conflict
       - id: debug-statements
@@ -97,7 +97,7 @@ repos:
       - id: poetry-export
         args: ["-f", "requirements.txt", "-o", "requirements.txt"]
   - repo: https://github.com/asottile/pyupgrade
-    rev: v2.31.1
+    rev: v2.37.2
     hooks:
       - id: pyupgrade
         args: ["--py36-plus"]
@@ -107,13 +107,13 @@ repos:
       - id: rst-backticks
       - id: python-no-log-warn
   - repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
-    rev: v2.3.0
+    rev: v2.4.0
     hooks:
       - id: pretty-format-toml
         args: [--autofix]
         exclude: ^poetry.lock$
   - repo: https://github.com/adrienverge/yamllint
-    rev: v1.26.3
+    rev: v1.27.1
     hooks:
       - id: yamllint
         name: Check yaml files with yamllint
@@ -186,7 +186,7 @@ repos:
         args: ["--config", "setup.cfg", "src/"]
         files: \.py$
   - repo: https://github.com/commitizen-tools/commitizen
-    rev: master
+    rev: v2.28.0
     hooks:
       - id: commitizen
         stages: [commit-msg]
