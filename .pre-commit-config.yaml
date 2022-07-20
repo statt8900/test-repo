@@ -185,3 +185,8 @@ repos:
       - id: flake8
         args: ["--config", "setup.cfg", "src/"]
         files: \.py$
+  - repo: https://github.com/commitizen-tools/commitizen
+    rev: master
+    hooks:
+      - id: commitizen
+        stages: [commit-msg]
