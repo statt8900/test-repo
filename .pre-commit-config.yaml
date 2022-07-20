@@ -1,4 +1,4 @@
-#   Copyright 2021 Modelyst LLC
+#   Copyright 2022 Modelyst LLC
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
 #   you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ repos:
       - id: forbid-tabs
       - id: insert-license
         name: Add license for all shell files
-        exclude: ^\.github/.*$|docs_src/
+        exclude: ^\.github/.*$|docs_src/|docs/
         args:
           - --comment-style
           - "|#|"
@@ -178,5 +178,5 @@ repos:
     rev: 3.9.2
     hooks:
       - id: flake8
-        args: ["--config", "setup.cfg", "src/dbgen"]
+        args: ["--config", "setup.cfg", "src/"]
         files: \.py$
