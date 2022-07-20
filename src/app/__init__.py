@@ -14,4 +14,4 @@
 
 """Test App"""
 
-__version__ = "3.1.0a0"
+__version__ = "3.1.0a1"
