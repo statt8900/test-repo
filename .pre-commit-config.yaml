@@ -160,6 +160,11 @@ repos:
         files: \.py$
         pass_filenames: false
         always_run: true
+      - id: set-version
+        name: Set version to 0.0.0
+        entry: ./scripts/ci/pre_commit/set_version.py
+        language: system
+        files: \.py$
       - id: lint
         name: Run Lint
         entry: poetry run ./scripts/ci/lint.sh

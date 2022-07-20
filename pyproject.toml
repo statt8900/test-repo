@@ -50,7 +50,7 @@ description = ""
 name = "test-repo"
 packages = [{include = "src/app"}]
 readme = "README.md"
-version = "3.0.2"
+version = "0.0.0"
 
 [tool.poetry.dependencies]
 numpy = "^1.23.1"
