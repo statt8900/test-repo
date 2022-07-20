@@ -4,7 +4,7 @@ description = ""
 name = "test-repo"
 packages = [{include = "src/app"}]
 readme = "README.md"
-version = "0.1.0"
+version = "3.0.2"
 
 [tool.poetry.dependencies]
 numpy = "^1.23.1"
@@ -25,8 +25,26 @@ pre-commit = "^2.20.0"
 pytest = "^7.1.2"
 
 [build-system]
-build-backend = "poetry.core.masonry.api"
-requires = ["poetry-core>=1.1.0b3"]
+build-backend = "poetry.masonry.api"
+requires = ["poetry-core>=1.1.0b3", "poetry-dynamic-versioning-plugin"]
+
+[tool.poetry-dynamic-versioning]
+enable = true
+format-jinja = """
+    {%- if distance == 0 -%}
+        {{ serialize_pep440(base, stage, revision) }}
+    {%- elif revision is not none -%}
+        {{ serialize_pep440(base, stage, revision + 1, dev=distance, metadata=[commit]) }}
+    {%- else -%}
+        {{ serialize_pep440(bump_version(base), stage, revision, dev=distance, metadata=[commit]) }}
+    {%- endif -%}
+"""
+vcs = "git"
+
+[tool.poetry-dynamic-versioning.substitution]
+folders = [
+  {path = "src"},
+]
 
 [tool.black]
 line-length = 110
