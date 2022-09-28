@@ -21,6 +21,12 @@ console = Console()
 app = typer.Typer(name="app", no_args_is_help=True)
 
 
+def unused_function(x: int):
+    y = "hello"
+    z = x + y
+    return z
+
+
 @app.command("hello")
 def hello_world():
     """Print the app version."""
