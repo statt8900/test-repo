@@ -27,6 +27,12 @@ def hello_world():
     console.print("hello world")
 
 
+@app.command("goodbye")
+def goodbye_world():
+    """Print the app version."""
+    console.print("goodbye world")
+
+
 @app.command()
 def version():
     """Print the app version."""
