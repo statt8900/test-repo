@@ -36,7 +36,7 @@ def version():
 @app.command()
 def new_command():
     """Print the app version."""
-    console.print('new command')
+    console.print('newer command')
 
 
 def main():
