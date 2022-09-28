@@ -153,13 +153,7 @@ repos:
         pass_filenames: true
         files: \.py$
         exclude: ^src/dbgen/cli/newfiles/|^tests/|^docs_src/tutorials|^examples/simple
-      - id: autoflake
-        name: Run autoflake
-        entry: poetry run ./scripts/ci/autoflake.sh
-        language: system
-        files: \.py$
-        pass_filenames: false
-        always_run: true
+
       # - id: set-version
       #   name: Set version to 0.0.0
       #   entry: ./scripts/ci/pre_commit/set_version.py
@@ -167,7 +161,7 @@ repos:
       #   files: \.py$
       - id: lint
         name: Run Lint
-        entry: poetry run ./scripts/ci/lint.sh
+        entry: poetry run ./scripts/ci/mypy_lint.sh
         language: system
         files: \.py$
         pass_filenames: false
@@ -185,6 +179,20 @@ repos:
       - id: flake8
         args: ["--config", "setup.cfg", "src/"]
         files: \.py$
+  - repo: https://github.com/PyCQA/autoflake
+    rev: v1.6.1
+    hooks:
+      - id: autoflake
+        language_version: python3
+        files: \.py$
+        pass_filenames: true
+        args:
+          [
+            "--in-place",
+            "--remove-all-unused-imports",
+            "--ignore-init-module-imports",
+          ]
+
   - repo: https://github.com/commitizen-tools/commitizen
     rev: v2.28.0
     hooks:

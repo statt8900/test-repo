@@ -26,9 +26,9 @@ def test_basic_execute():
 
 
 def test_basic_hello():
-    result = runner.invoke(app, "hello")
+    result = runner.invoke(app, ["hello", "world"])
     assert result.exit_code == 0
-    assert result.stdout.strip() == 'hello world'
+    assert result.stdout.strip() == 'Hello world!'
 
 
 def test_basic_version():

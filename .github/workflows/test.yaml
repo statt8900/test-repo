@@ -53,7 +53,8 @@ jobs:
           python -m pip install "poetry==1.2.1"
       - name: Configure poetry
         run: python -m poetry config virtualenvs.create false
-      - name: Lint
-        run: python -m poetry run bash scripts/ci/lint.sh
+      - name: Install Dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: python -m poetry install
       - name: Test
         run: python -m poetry run bash scripts/ci/test.sh
