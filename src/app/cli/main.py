@@ -39,5 +39,11 @@ def new_command():
     console.print('newer command')
 
 
+@app.command()
+def hello(name: str):
+    """Say Hello to user."""
+    console.print(f'Hello {name}!')
+
+
 def main():
     app()  # pragma: no cover
