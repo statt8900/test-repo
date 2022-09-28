@@ -57,4 +57,6 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         run: python -m poetry install
       - name: Test
-        run: python -m poetry run bash scripts/ci/test.sh
+        run: |
+          export PYTHONPATH=$PWD/src:$PYTHONPATH
+          python -m poetry run bash scripts/ci/test.sh

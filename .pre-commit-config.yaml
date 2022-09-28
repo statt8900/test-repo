@@ -185,7 +185,6 @@ repos:
       - id: autoflake
         language_version: python3
         files: \.py$
-        pass_filenames: true
         args:
           [
             "--in-place",
