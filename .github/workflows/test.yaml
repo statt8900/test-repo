@@ -8,7 +8,7 @@ env:
 on:
   pull_request:
     paths:
-      - .github/workflows/tests.yaml
+      - .github/workflows/test.yaml
       - "**/*.py"
       - poetry.lock
       - pyproject.toml
@@ -60,3 +60,18 @@ jobs:
         run: |
           export PYTHONPATH=$PWD/src:$PYTHONPATH
           python -m poetry run bash scripts/ci/test.sh
+  PR-Comment:
+    if: github.actor != 'user1' && github.actor != 'user2' && github.actor != 'user3' && github.actor != 'user4' && github.actor != 'user5'
+    runs-on: ubuntu-latest
+    steps:
+      - name: PR Comment
+        uses: actions/github-script@v2
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            github.issues.createComment({
+              issue_number: ${{ github.event.number }},
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: ':warning: Test'
+            })
