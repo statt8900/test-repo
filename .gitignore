@@ -143,3 +143,4 @@ git_version
 .benchmarks
 
 .venv/
+coverage.xml
