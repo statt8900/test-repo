@@ -17,11 +17,5 @@
 set -e
 set -x
 
-flake8 --version
-flake8 src/app tests docs_src
-black --version
-black src/app tests docs_src --check
-isort --version
-isort src/app tests docs_src --check-only
 mypy --version
 mypy --config pyproject.toml src/app
