@@ -60,11 +60,9 @@ jobs:
         run: |
           export PYTHONPATH=$PWD/src:$PYTHONPATH
           python -m poetry run bash scripts/ci/test.sh
-  PR-Comment:
-    runs-on: ubuntu-latest
-    steps:
       - name: PR Comment
         uses: actions/github-script@v2
+        if: ${{ github.event_name == 'pull_request' }}
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
